@@ -2,7 +2,7 @@ async function getMostFollowers(...usernames){
   let baseUrl = "https://api.github.com/users/"
   let urls = usernames.map(v => $.getJSON(baseUrl + v));
   let results = await Promise.all(urls);
-  let max = results.sort((a,b) => a.followers < b.followers)[0];
+  let max = results.sort((a,b) => b.followers - a.followers)[0];
   return `${max.name} has the most followers`;
 }
 
